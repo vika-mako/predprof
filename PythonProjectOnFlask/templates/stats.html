@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+статистика столовой
+{% endblock %}
+
+{% block body %}
+    <h1>УМНАЯ СТОЛОВАЯ для администраторов</h1>
+    <h2>статистика столовой</h2>
+{% endblock %}
+
+{% block panel %}
+<div><a href="/administrator/add">управление сотрудниками</a></div>
+<div><a href="/administrator/procurementapprove">согласование закупок</a></div>
+<div><a href="/administrator/report">отчёты</a></div>
+<div><a href="/administrator/stats">статистика столовой</a></div>
+{% endblock %}
+
+{% block change %}
+<a href="/change">сменить статус</a>
+{% endblock %}

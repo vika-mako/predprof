@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ваш заказ
+{% endblock %}
+
+{% block body %}
+<h1>УМНАЯ СТОЛОВАЯ</h1>
+<h2>заказы</h2>
+{% endblock %}
+
+{% block panel %}
+<a href="/popular">популярное</a>
+<a href="/menu">меню</a>
+<a href="/orders">заказы</a>
+<a href="/grades">отзывы</a>
+<a href="/money">баланс</a>
+<a href="/recommendations">рекоммендации</a>
+{% endblock %}
+
+{% block but %}
+    <form action="/orders/purchase/success">
+        <div>ваш заказ содержит то-то то-то</div>
+        <button type="submit">ОПЛАТИТЬ</button>
+    </form>
+{% endblock %}

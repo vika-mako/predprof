@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+смена интерфейса
+{% endblock %}
+
+{% block body %}
+<h1>УМНАЯ СТОЛОВАЯ</h1>
+<h2>вход в аккаунт</h2>
+{% endblock %}
+
+{% block panel %}
+<div><a href="/popular">версия ученика</a></div>
+<div><a href="/administrator/stats">версия администратора</a></div>
+<div><a href="/chef/dishcheck">версия повара</a></div>
+{% endblock %}
+
+{% block back %}<a href="/popular">сброс</a>{% endblock %}
