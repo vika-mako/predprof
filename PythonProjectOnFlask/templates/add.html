@@ -1,17 +1,75 @@
-{% extends 'base.html' %}
-
-{% block title %}
-управление сотрудниками
-{% endblock %}
-
-{% block body %}
-    <h1>УМНАЯ СТОЛОВАЯ для администраторов</h1>
-    <h2>управление сотрудниками</h2>
-{% endblock %}
-
-{% block panel %}
-<div><a href="/administrator/add">управление сотрудниками</a></div>
-<div><a href="/administrator/procurementapprove">согласование закупок</a></div>
-<div><a href="/administrator/report">отчёты</a></div>
-<div><a href="/administrator/stats">статистика столовой</a></div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="add.css">
+    <link rel="icon" href="logo-admin.png" type="image/x-icon" sizes="x20">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="add.html" class="logo-link">
+                <img src="logo-admin.png" alt="Admin" class="logo-img">
+                <div class="title-container">
+                    <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
+                    <span class="company-name2">для администратора</span>
+                </div>
+            </a>
+            
+            <div class="user-badge" id="userBadge">
+                example@gmail.com
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            
+            <ul class="menu">
+                <li class="menu-item">
+                    <img src="add-empl.png" alt="Add employee" class="logo-img2">
+                    <a href="add.html" class="logo-link2">назначить сотрудника</a>
+                </li>
+                <li class="menu-item">
+                    <img src="dealing.png" alt="Dealing" class="logo-img2">
+                    <a href="#" class="logo-link2">согласование закупок</a>
+                </li>
+                <li class="menu-item">
+                    <img src="report.png" alt="Report" class="logo-img2">
+                    <a href="#" class="logo-link2">отчеты</a>
+                </li>
+                <li class="menu-item">
+                    <img src="stats.png" alt="Stats" class="logo-img2">
+                    <a href="#" class="logo-link2">статистика столовой</a>
+                </li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="section">
+                <div class="section-title">администраторы</div>
+                <ul class="employee-list">
+                    <li class="employee-item">
+                        <div class="employee-name">сотрудник 001</div>
+                        <div class="employee-email">почта: example@gmail.com</div>
+                    </li>
+                </ul>
+                <button class="add-button">добавить сотрудника</button>
+            </div>
+            <div class="section">
+                <div class="section-title">повара</div>
+                <ul class="employee-list">
+                    <li class="employee-item">
+                        <div class="employee-name">сотрудник 011</div>
+                        <div class="employee-email">почта: example@gmail.com</div>
+                    </li>
+                </ul>
+                <button class="add-button">добавить сотрудника</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
