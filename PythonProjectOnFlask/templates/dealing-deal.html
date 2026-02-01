@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Заявки</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dealing-deal.css">
+    <link rel="icon" href="logo-admin.png" type="image/x-icon" sizes="x20">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 120px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 5px;
+        }
+        
+        .company-role {
+            font-size: 18px;
+            color: #6E6EFF;
+            margin-bottom: 20px;
+        }
+        
+        .user-email {
+            display: inline-block;
+            background: #6E6EFF;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+        }
+        
+        .menu-item:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1)
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-link2 {
+            text-decoration: none;
+            color: #555;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        
+        .title-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #5E5E5E;
+            line-height: 1;
+        }
+        
+        .company-name2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6E6EFF;
+            line-height: 1;
+        }
+        
+        .user-badge {
+            width: fit-content;
+            min-width: 200px;
+            padding: 10px 20px;
+            background-color: #6E6EFF;
+            border-radius: 20px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+        .logo-img2 {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .deal {
+            margin-top: 25px;
+            background: #f8f9fa;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6E6EFF;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .access {
+            padding: 8px 16px;
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 36px;
+        }
+        .view {
+            background-color:#6E6EFF;
+            color: white;
+            min-width: 120px;
+        }
+        .title-title {
+            border-bottom: 2px solid #6E6EFF;
+            padding-bottom: 10px;
+            display: grid;
+        }
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    background-color: #f5f5f5;
+    padding-top: 120px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+
+.sidebar {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.sidebar-user-info {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar-company-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5E5E5E;
+    margin-bottom: 5px;
+}
+
+.company-role {
+    font-size: 18px;
+    color: #6E6EFF;
+    margin-bottom: 20px;
+}
+
+.user-email {
+    display: inline-block;
+    background: #6E6EFF;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu-item {
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 16px;
+    color: #555;
+}
+
+.menu-item:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+
+.section {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #5E5E5E;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    text-align: center;
+    display: block; /* Убрал grid */
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.logo-link2 {
+    text-decoration: none;
+    color: #555;
+}
+
+.logo-img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-company-name {
+    font-size: 32px;
+    font-weight: 700;
+    color: #5E5E5E;
+    line-height: 1;
+}
+
+.header-company-name2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #6E6EFF;
+    line-height: 1;
+}
+
+.user-badge {
+    width: fit-content;
+    min-width: 200px;
+    padding: 10px 20px;
+    background-color: #6E6EFF;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.logo-img2 {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.deal {
+    margin-top: 25px;
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #6E6EFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+}
+
+.access {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    min-width: 40px;
+}
+
+.access:first-of-type {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.access:nth-of-type(2) {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.access.view {
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    min-width: 120px;
+}
+
+.back {
+    display: inline-block;
+    padding: 12px 40px;
+    background-color: #6E6EFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+    margin-top: 20px;
+}
+
+.title-title {
+    border-bottom: 2px solid #6E6EFF; 
+    padding-bottom: 10px;
+    font-size: 27px;
+    color:#5E5E5E;
+    margin-bottom: 25px;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+}
+
+.info {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+    color: #7f8c8d;
+    margin-bottom: 40px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.info h3 {
+    margin: 10px 0;
+    font-weight: normal;
+    color: #7f8c8d;
+}
+
+/* Стили для кнопок в deal */
+.deal-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.menu-item-now {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            border: 2px solid transparent;
+            border-color: #6E6EFF;
+        }
+        .menu-item-now:hover {
+            border-color: #6E6EFF;
+            border: 2px solid transparent;
+            color: white;
+            transform: translateX(5px);
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="add.html" class="logo-link">
+                <img src="logo-admin.png" alt="Admin" class="logo-img">
+                <div class="title-container">
+                    <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
+                    <span class="company-name2">для администратора</span>
+                </div>
+            </a>
+            
+            <div class="user-badge" id="userBadge">
+                example@gmail.com
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <img src="add-empl.png" alt="Add employee" class="logo-img2">
+                    <a href="add.html" class="logo-link2">назначить сотрудника</a>
+                </li>
+                <li class="menu-item-now">
+                    <img src="dealing.png" alt="Dealing" class="logo-img2">
+                    <a href="dealing.html" class="logo-link2">согласование закупок</a>
+                </li>
+                <li class="menu-item">
+                    <img src="report.png" alt="Report" class="logo-img2">
+                    <a href="report.html" class="logo-link2">отчеты</a>
+                </li>
+                <li class="menu-item">
+                    <img src="stats.png" alt="Stats" class="logo-img2">
+                    <a href="stats.html" class="logo-link2">статистика столовой</a>
+                </li>
+            </ul>
+    </div>
+        <div class="section-title">
+            <h1 class="title-title">заявка №<span class="order-number">1</span></h1>
+            <div class="info">
+                <h3 class="empty-message">здесь ничего нет...</h3>
+                <h3 class="empty-subtitle">пока что</h3>
+            </div>
+            <a href="dealing.html" class="back">назад</a>
+        </div>   
+    </div>
+</body>
+</html>
