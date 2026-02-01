@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Админ</title>
+    <title>Админ Заявки</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -221,9 +221,11 @@
             align-items: center;
             justify-content: center;
             height: 36px;
+            text-decoration: none;
         }
         .view {
             background-color:#6E6EFF;
+            text-decoration: none;
             color: white;
             min-width: 120px;
         }
@@ -257,17 +259,17 @@
                     <img src="add-empl.png" alt="Add employee" class="logo-img2">
                     <a href="add.html" class="logo-link2">назначить сотрудника</a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item-now">
                     <img src="dealing.png" alt="Dealing" class="logo-img2">
                     <a href="dealing.html" class="logo-link2">согласование закупок</a>
                 </li>
                 <li class="menu-item">
                     <img src="report.png" alt="Report" class="logo-img2">
-                    <a href="#" class="logo-link2">отчеты</a>
+                    <a href="report.html" class="logo-link2">отчеты</a>
                 </li>
                 <li class="menu-item">
                     <img src="stats.png" alt="Stats" class="logo-img2">
-                    <a href="#" class="logo-link2">статистика столовой</a>
+                    <a href="stats.html" class="logo-link2">статистика столовой</a>
                 </li>
             </ul>
         </div>
@@ -275,14 +277,14 @@
             <div class="section-title">
                 <a class="title-title">заявки на закупки</a>
                 <div class="deal">
-                    <h5 class="deal-number">заявка №<span>1</span></h5>
+                    <h5 class="deal-number">заявка №1</h5>
                     <button class="access">
                         <img src="yes.png" alt="yes">
                     </button>
                     <button class="access">
                         <img src="no.png" alt="no">
                     </button>
-                    <button class="access view">посмотреть</button>
+                    <a href="dealing-deal.html" class="access view">посмотреть</a>
                 </div>
             </div>    
         </div>
