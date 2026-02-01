@@ -1,21 +1,422 @@
-{% extends 'base.html' %}
-
-{% block title %}
-статистика столовой
-{% endblock %}
-
-{% block body %}
-    <h1>УМНАЯ СТОЛОВАЯ для администраторов</h1>
-    <h2>статистика столовой</h2>
-{% endblock %}
-
-{% block panel %}
-<div><a href="/administrator/add">управление сотрудниками</a></div>
-<div><a href="/administrator/procurementapprove">согласование закупок</a></div>
-<div><a href="/administrator/report">отчёты</a></div>
-<div><a href="/administrator/stats">статистика столовой</a></div>
-{% endblock %}
-
-{% block change %}
-<a href="/change">сменить статус</a>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Отчеты</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stats.css">
+    <link rel="icon" href="logo-admin.png" type="image/x-icon" sizes="x20">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 120px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 5px;
+        }
+        
+        .company-role {
+            font-size: 18px;
+            color: #6E6EFF;
+            margin-bottom: 20px;
+        }
+        
+        .user-email {
+            display: inline-block;
+            background: #6E6EFF;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+        }
+        .menu-item-now {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            border: 2px solid transparent;
+            border-color: #6E6EFF;
+        }
+        .menu-item-now:hover {
+            border-color: #6E6EFF;
+            border: 2px solid transparent;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .menu-item:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1)
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-link2 {
+            text-decoration: none;
+            color: #555;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        
+        .title-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #5E5E5E;
+            line-height: 1;
+        }
+        
+        .company-name2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6E6EFF;
+            line-height: 1;
+        }
+        
+        .user-badge {
+            width: fit-content;
+            min-width: 200px;
+            padding: 10px 20px;
+            background-color: #6E6EFF;
+            border-radius: 20px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+        .logo-img2 {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        
+        .stats-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #5E5E5E;
+            text-transform: lowercase;
+        }
+        
+        .period {
+            font-size: 18px;
+            color: #5E5E5E;
+            background-color: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+        }
+        .stats-table {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px #5E5E5E;
+            margin-bottom: 40px;
+        }
+        
+        .table-header {
+            background-color: #6E6EFF;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 20px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            text-align: center;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .table-row:last-child {
+            border-bottom: none;
+        }
+        
+        .date-cell {
+            color: #5E5E5E;
+            font-weight: 500;
+        }
+        
+        .income-cell {
+            color: #27ae60;
+            font-weight: 600;
+        }
+        
+        .expense-cell {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        .totals {
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 12px #5E5E5E;
+        }
+        
+        .totals-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #5E5E5E;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+        
+        .total-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .total-item {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .total-label {
+            font-size: 14px;
+            color: #5E5E5E;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .total-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        
+        .total-income {
+            color: #27ae60;
+        }
+        
+        .total-expense {
+            color: #e74c3c;
+        }
+        
+        .total-balance {
+            color: #6E6EFF;
+        }
+        .rouble {
+            font-weight: 400;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="add.html" class="logo-link">
+                <img src="logo-admin.png" alt="Admin" class="logo-img">
+                <div class="title-container">
+                    <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
+                    <span class="company-name2">для администратора</span>
+                </div>
+            </a>
+            
+            <div class="user-badge" id="userBadge">
+                example@gmail.com
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <img src="add-empl.png" alt="Add employee" class="logo-img2">
+                    <a href="add.html" class="logo-link2">назначить сотрудника</a>
+                </li>
+                <li class="menu-item">
+                    <img src="dealing.png" alt="Dealing" class="logo-img2">
+                    <a href="dealing.html" class="logo-link2">согласование закупок</a>
+                </li>
+                <li class="menu-item">
+                    <img src="report.png" alt="Report" class="logo-img2">
+                    <a href="report.html" class="logo-link2">отчеты</a>
+                </li>
+                <li class="menu-item-now">
+                    <img src="stats.png" alt="Stats" class="logo-img2">
+                    <a href="stats.html" class="logo-link2">статистика столовой</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="page-header">
+                <h1 class="stats-title">статистика</h1>
+            <div class="period">cтатистика от 01.01.26 до 31.01.26</div>
+            </div>
+            <div class="stats-table">
+                <div class="table-header">
+                    <div>Дата</div>
+                    <div>ДОХОДЫ</div>
+                    <div>РАСХОДЫ</div>
+                </div>
+            
+                <div class="table-row">
+                    <div class="date-cell">11.01.26</div>
+                    <div class="income-cell">1500<span class="rouble">₽</span></div>
+                    <div class="expense-cell">500<span class="rouble">₽</span></div>
+                </div>
+            </div>
+            <div class="totals">
+                <h2 class="totals-title">ИТОГО:</h2>
+                <div class="total-items">
+                    <div class="total-item">
+                        <div class="total-label">Доходы</div>
+                        <div class="total-value total-income">1500<span class="rouble">₽</span></div>
+                    </div>
+                
+                    <div class="total-item">
+                        <div class="total-label">Расходы</div>
+                        <div class="total-value total-expense">500<span class="rouble">₽</span></div>
+                    </div>
+                
+                    <div class="total-item">
+                        <div class="total-label">Баланс</div>
+                        <div class="total-value total-balance">1000<span class="rouble">₽</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
