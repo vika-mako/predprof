@@ -1,26 +1,602 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умная Столовая - Оплата</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="logo-student.png" type="image/x-icon" sizes="x20">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: #F5F7FA;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+        
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 3px solid #00E661;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2C3E50;
+            line-height: 1;
+        }
+        
+        .user-badge {
+            width: fit-content;
+            min-width: 200px;
+            padding: 12px 24px;
+            background-color: #00E661;
+            border-radius: 25px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .user-badge:hover {
+            background-color: #00C853;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 230, 97, 0.2);
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 40px;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+        
+        .menu {
+            list-style: none;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 2px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background-color: #F0F7FF;
+            color: #00E661;
+            transform: translateX(5px);
+        }
+        
+        .menu-item.active {
+            background-color: rgba(0, 230, 97, 0.1);
+            color: #00E661;
+            border-color: #00E661;
+            font-weight: 500;
+        }
+        
+        .logo-img2 {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover .logo-img2 {
+            transform: scale(1.1);
+        }
+        
+        .logo-link2 {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+        }
+        
+        .main-content {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            min-height: 500px;
+        }
+        
+        /* Стили для страницы оплаты */
+        .payment-content {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .payment-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        
+        .payment-info {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .payment-item {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #E0E0E0;
+        }
+        
+        .payment-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .payment-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .payment-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: #2C3E50;
+        }
+        
+        .payment-value.price {
+            font-size: 36px;
+            font-weight: 700;
+            color: #00E661;
+        }
+        
+        .order-items {
+            background: #F0F7FF;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 230, 97, 0.2);
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-name {
+            font-size: 16px;
+            color: #2C3E50;
+        }
+        
+        .order-item-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00E661;
+        }
+        
+        .warning-message {
+            background: #FFF9E6;
+            border-left: 4px solid #FFC107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+        
+        .warning-message p {
+            font-size: 15px;
+            color: #5D4037;
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .pay-button {
+            width: 100%;
+            background: #00E661;
+            color: white;
+            border: none;
+            padding: 22px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+        
+        .pay-button:hover {
+            background: #00C853;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 230, 97, 0.3);
+        }
+        
+        .pay-button:active {
+            transform: translateY(-1px);
+        }
+        
+        .pay-button:disabled {
+            background: #CCCCCC;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .back-button {
+            width: 100%;
+            background: transparent;
+            color: #00E661;
+            border: 2px solid #00E661;
+            padding: 18px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 15px;
+            text-decoration: none;
+        }
+        
+        .back-button:hover {
+            background: rgba(0, 230, 97, 0.1);
+            text-decoration: none;
+            
+        }
+        
+        .separator {
+            height: 1px;
+            background: #E0E0E0;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 0 20px 20px;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .menu {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+            
+            .menu-item {
+                flex: 1;
+                min-width: 140px;
+                justify-content: center;
+                margin-bottom: 0;
+            }
+            
+            .main-content {
+                padding: 25px;
+            }
+            
+            .payment-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .payment-info {
+                padding: 25px;
+            }
+            
+            .payment-value {
+                font-size: 24px;
+            }
+            
+            .payment-value.price {
+                font-size: 30px;
+            }
+            
+            .pay-button {
+                padding: 18px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo-link">
+                <img src="student.jpg" alt="Student" class="logo-img">
+                <div class="title-container">
+                    <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
+                </div>
+            </a>
+            
+            <div class="user-badge">
+                example@gmail.com
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="sidebar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <img src="heard.jpg" alt="Popular" class="logo-img2">
+                    <a href="#" class="logo-link2">популярное</a>
+                </li>
+                <li class="menu-item">
+                    <img src="home.jpg" alt="Menu" class="logo-img2">
+                    <a href="#" class="logo-link2">меню</a>
+                </li>
+                <li class="menu-item">
+                    <img src="basket.jpg" alt="Orders" class="logo-img2">
+                    <a href="#" class="logo-link2">заказы</a>
+                </li>
+                <li class="menu-item">
+                    <img src="messedg.jpg" alt="Request" class="logo-img2">
+                    <a href="#" class="logo-link2">отзывы</a>
+                </li>
+                <li class="menu-item active">
+                    <img src="money.jpg" alt="Balance" class="logo-img2">
+                    <a href="#" class="logo-link2">баланс</a>
+                </li>
+                <li class="menu-item">
+                    <img src="stop.jpg" alt="Forbid" class="logo-img2">
+                    <a href="#" class="logo-link2">противопоказания и рекомендации</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <div class="payment-content">
+                <h1 class="payment-title">ОПЛАТИТЬ ЗАКАЗ</h1>
+                
+                <div class="payment-info">
+                    <div class="payment-item">
+                        <span class="payment-label">КОЛИЧЕСТВО БЛЮД</span>
+                        <div class="payment-value">2 позиции</div>
+                        
+                        <div class="order-items">
+                            <div class="order-item">
+                                <span class="order-item-name">Овсяная каша с ягодами</span>
+                                <span class="order-item-price">50.00₽</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="order-item-name">Сырники со сметаной</span>
+                                <span class="order-item-price">100.00₽</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-item">
+                        <span class="payment-label">ИТОГОВАЯ ЦЕНА</span>
+                        <div class="payment-value price">150.00₽</div>
+                    </div>
+                </div>
+                
+                <div class="separator"></div>
+                
+                <div class="warning-message">
+                    <p>Внимательно проверьте ваш заказ перед покупкой и убедитесь, что у вас достаточно средств</p>
+                </div>
+                
+                <button class="pay-button" id="payButton">ОПЛАТИТЬ</button>
+                
+                <button class="back-button" onclick="goBack()">
+                    <a href = "order.html" >Вернуться к корзине</a>
+                </button>
+                
+            </div>
+        </div>
+    </div>
 
-{% block title %}
-ваш заказ
-{% endblock %}
-
-{% block body %}
-<h1>УМНАЯ СТОЛОВАЯ</h1>
-<h2>заказы</h2>
-{% endblock %}
-
-{% block panel %}
-<a href="/popular">популярное</a>
-<a href="/menu">меню</a>
-<a href="/orders">заказы</a>
-<a href="/grades">отзывы</a>
-<a href="/money">баланс</a>
-<a href="/recommendations">рекоммендации</a>
-{% endblock %}
-
-{% block but %}
-    <form action="/orders/purchase/success">
-        <div>ваш заказ содержит то-то то-то</div>
-        <button type="submit">ОПЛАТИТЬ</button>
-    </form>
-{% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const payButton = document.getElementById('payButton');
+            
+            // Обработка кликов по пунктам меню
+            menuItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Убираем активный класс у всех элементов
+                    menuItems.forEach(menu => menu.classList.remove('active'));
+                    
+                    // Добавляем активный класс к текущему элементу
+                    this.classList.add('active');
+                });
+            });
+            
+            // Устанавливаем пункт "баланс" активным по умолчанию
+            menuItems[4].classList.add('active');
+            
+            // Обработка кнопки оплаты
+            payButton.addEventListener('click', function() {
+                payButton.textContent = 'ОБРАБОТКА...';
+                payButton.disabled = true;
+                
+                // Имитация процесса оплаты
+                setTimeout(() => {
+                    alert('Оплата успешно проведена! Сумма: 150.00₽');
+                    
+                    // Здесь можно добавить редирект на страницу подтверждения
+                    // window.location.href = 'order-success.html';
+                    
+                    // Или показать сообщение об успехе
+                    const paymentContent = document.querySelector('.payment-content');
+                    paymentContent.innerHTML = `
+                        <div style="text-align: center; padding: 40px 0;">
+                            <div style="font-size: 48px; color: #00E661; margin-bottom: 20px;">✓</div>
+                            <h2 style="font-size: 24px; color: #2C3E50; margin-bottom: 20px;">ОПЛАТА УСПЕШНА</h2>
+                            <p style="font-size: 18px; color: #555; margin-bottom: 30px;">Ваш заказ на сумму 150.00₽ оплачен</p>
+                            <p style="font-size: 16px; color: #7F8C8D; margin-bottom: 40px;">Заказ будет готов в течение 15-20 минут</p>
+                            <button onclick="goToOrders()" style="background: #00E661; color: white; border: none; padding: 15px 40px; font-size: 16px; border-radius: 8px; cursor: pointer; margin-right: 10px;">
+                                Мои заказы
+                            </button>
+                            <button onclick="goToMenu()" style="background: transparent; color: #00E661; border: 2px solid #00E661; padding: 15px 40px; font-size: 16px; border-radius: 8px; cursor: pointer;">
+                                Вернуться в меню
+                            </button>
+                        </div>
+                    `;
+                }, 2000);
+            });
+        });
+        
+        function goBack() {
+            // Имитация возврата на предыдущую страницу
+            alert('Возвращаемся к корзине...');
+            // В реальном приложении здесь будет: window.history.back() или window.location.href = 'cart.html'
+        }
+        
+        function goToOrders() {
+            alert('Переход к моим заказам...');
+            // window.location.href = 'orders.html';
+            
+            // Активируем пункт меню "заказы"
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(menu => menu.classList.remove('active'));
+            menuItems[2].classList.add('active');
+            
+            // Обновляем заголовок
+            document.querySelector('.payment-title').textContent = 'МОИ ЗАКАЗЫ';
+            
+            // Показываем список заказов
+            const paymentContent = document.querySelector('.payment-content');
+            paymentContent.innerHTML = `
+                <h1 class="payment-title">МОИ ЗАКАЗЫ</h1>
+                <div style="text-align: left; margin-top: 30px;">
+                    <div style="background: #F8F9FA; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-weight: 600; color: #2C3E50;">Заказ #001</span>
+                            <span style="color: #00E661; font-weight: 600;">150.00₽</span>
+                        </div>
+                        <div style="color: #7F8C8D; font-size: 14px; margin-bottom: 10px;">28 января 2024 • 2 блюда</div>
+                        <div style="color: #2C3E50; font-size: 14px;">Статус: <span style="color: #00E661;">Оплачен</span></div>
+                    </div>
+                    
+                    <div style="background: #F8F9FA; border-radius: 12px; padding: 20px;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span style="font-weight: 600; color: #2C3E50;">Заказ #002</span>
+                            <span style="color: #00E661; font-weight: 600;">280.00₽</span>
+                        </div>
+                        <div style="color: #7F8C8D; font-size: 14px; margin-bottom: 10px;">27 января 2024 • 3 блюда</div>
+                        <div style="color: #2C3E50; font-size: 14px;">Статус: <span style="color: #2196F3;">В процессе</span></div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function goToMenu() {
+            alert('Переход к меню...');
+            // window.location.href = 'menu.html';
+            
+            // Активируем пункт меню "меню"
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(menu => menu.classList.remove('active'));
+            menuItems[1].classList.add('active');
+            
+            // Обновляем заголовок
+            document.querySelector('.payment-title').textContent = 'МЕНЮ';
+            
+            // Показываем меню
+            const paymentContent = document.querySelector('.payment-content');
+            paymentContent.innerHTML = `
+                <h1 class="payment-title">МЕНЮ НА 28 ЯНВАРЯ</h1>
+                <div style="text-align: left; margin-top: 30px;">
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="color: #2C3E50; margin-bottom: 15px;">готовые завтраки</h3>
+                        <div style="background: #F8F9FA; border-radius: 8px; padding: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                                <span>Овсяная каша с ягодами</span>
+                                <span style="color: #00E661; font-weight: 600;">50₽</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>Сырники со сметаной</span>
+                                <span style="color: #00E661; font-weight: 600;">100₽</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
