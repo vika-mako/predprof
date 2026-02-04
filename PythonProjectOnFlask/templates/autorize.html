@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>authorize</title>
+    <title>Авторизация</title>
     <link rel="stylesheet" href="autorize.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="logo-student.png" type="image/x-icon" sizes="x20">
     <style>
         * {
     margin: 0;
@@ -253,7 +254,7 @@ body {
                 </form>
                 
                 <div class="register-link">
-                    <p>У меня нет аккаунта <a href="#" class="register-button">Зарегистрироваться</a></p>
+                    <p>У меня нет аккаунта <a href="register.html" class="register-button">Зарегистрироваться</a></p>
                 </div>
             </div>
         </main>
@@ -311,13 +312,6 @@ body {
             loginForm.reset();
         }, 2000);
     }
-    
-    // Обработка ссылки регистрации
-    const registerButton = document.querySelector('.register-button');
-    registerButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        alert('Функция регистрации будет доступна в ближайшее время');
-    });
 });
 </script>
 </html>
