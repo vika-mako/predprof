@@ -269,8 +269,8 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="#" class="logo-link">
-                <img src="student.jpg" alt="Student" class="logo-img">
+            <a href="home.html" class="logo-link">
+                <img src="logo-student.png" alt="Student" class="logo-img">
                 <div class="title-container">
                     <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
                 </div>
@@ -286,28 +286,28 @@
         <div class="sidebar">
             <ul class="menu">
                 <li class="menu-item">
-                    <img src="heard.jpg" alt="Popular" class="logo-img2">
-                    <a href="#" class="logo-link2">популярное</a>
+                    <img src="popular.png" alt="Popular" class="logo-img2">
+                    <a href="popular.html" class="logo-link2">популярное</a>
                 </li>
                 <li class="menu-item">
-                    <img src="home.jpg" alt="Menu" class="logo-img2">
-                    <a href="#" class="logo-link2">меню</a>
+                    <img src="menu.png" alt="Menu" class="logo-img2">
+                    <a href="menu.html" class="logo-link2">меню</a>
                 </li>
                 <li class="menu-item">
-                    <img src="basket.jpg" alt="Orders" class="logo-img2">
-                    <a href="#" class="logo-link2">заказы</a>
+                    <img src="orders.png" alt="Orders" class="logo-img2">
+                    <a href="orders.html" class="logo-link2">заказы</a>
                 </li>
                 <li class="menu-item">
-                    <img src="messedg.jpg" alt="Request" class="logo-img2">
-                    <a href="#" class="logo-link2">отзывы</a>
+                    <img src="request.png" alt="Request" class="logo-img2">
+                    <a href="rates.html" class="logo-link2">отзывы</a>
                 </li>
                 <li class="menu-item">
-                    <img src="money.jpg" alt="Balance" class="logo-img2">
-                    <a href="#" class="logo-link2">баланс</a>
+                    <img src="balance.png" alt="Balance" class="logo-img2">
+                    <a href="balance.html" class="logo-link2">баланс</a>
                 </li>
                 <li class="menu-item">
-                    <img src="stop.jpg" alt="Forbid" class="logo-img2">
-                    <a href="#" class="logo-link2">противопоказания и рекомендации</a>
+                    <img src="forbid.png" alt="Forbid" class="logo-img2">
+                    <a href="forbid.html" class="logo-link2">противопоказания и рекомендации</a>
                 </li>
             </ul>
         </div>
@@ -325,11 +325,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const loginBtn = document.getElementById('loginBtn');
             const userBadge = document.getElementById('userBadge');
-            const menuItems = document.querySelectorAll('.menu-item');
-            
-            // Простая обработка кнопки входа
             loginBtn.addEventListener('click', function() {
-                // Если кнопка в состоянии "Войти"
                 if (loginBtn.textContent === 'ВОЙТИ') {
                     loginBtn.textContent = 'ВХОД...';
                     loginBtn.classList.add('logging-in');
@@ -371,22 +367,6 @@
                 }
             });
             
-            // Обработка кликов по пунктам меню
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Убираем активный класс у всех элементов
-                    menuItems.forEach(menu => menu.classList.remove('active'));
-                    
-                    // Добавляем активный класс к текущему элементу
-                    this.classList.add('active');
-                    
-                    // Простое сообщение о выборе раздела
-                    const sectionText = this.querySelector('.logo-link2').textContent;
-                    alert(`Вы выбрали раздел: ${sectionText}`);
-                });
-            });
             
             // Обработка клика по бейджу пользователя
             userBadge.addEventListener('click', function() {
