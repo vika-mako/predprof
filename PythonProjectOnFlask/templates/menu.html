@@ -162,117 +162,74 @@
             padding: 40px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             min-height: 500px;
+            display: flex;
+            flex-direction: column;
         }
         
-        /* Стили для контента меню как на картинке */
-        .menu-content {
-            width: 100%;
+        .login-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
         }
         
-        .menu-date {
+        .login-message {
             font-size: 24px;
             font-weight: 600;
             color: #2C3E50;
+            text-align: center;
             margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #EAEDF3;
+            max-width: 400px;
         }
         
-        .menu-category {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #F0F0F0;
+        .login-btn {
+            background: transparent;
+            color: #00E661;
+            border: 2px solid #00E661;
+            padding: 16px 50px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .menu-category:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
+        .login-btn:hover {
+            background: #00E661;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 230, 97, 0.2);
         }
         
-        .category-title {
-            font-size: 18px;
-            font-weight: 500;
-            color: #555;
-            margin-bottom: 15px;
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        .login-btn.logging-in {
+            background: #00E661;
+            color: white;
+            cursor: not-allowed;
+        }
+        
+        .recommendations {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid #EAEDF3;
+            color: #7F8C8D;
+            font-style: italic;
+            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .category-title::before {
-            content: "";
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background-color: #00E661;
-            border-radius: 50%;
-        }
-        
-        .dishes-list {
-            background: #F8F9FA;
-            border-radius: 10px;
-            padding: 25px;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .dishes-list p {
-            color: #7F8C8D;
-            font-size: 15px;
-            font-style: italic;
-            text-align: center;
-            margin: 0;
-        }
-        
-        .menu-actions {
-            margin-top: 40px;
-            display: flex;
-            gap: 15px;
-        }
-        
-        .menu-btn {
-            background: #00E661;
-            color: white;
-            border: none;
-            padding: 14px 30px;
-            font-size: 16px;
-            font-weight: 500;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .menu-btn:hover {
-            background: #00C853;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 230, 97, 0.2);
-        }
-        
-        .menu-btn.secondary {
-            background: transparent;
-            color: #00E661;
-            border: 2px solid #00E661;
-        }
-        
-        .menu-btn.secondary:hover {
-            background: rgba(0, 230, 97, 0.1);
-        }
-        
-        .menu-btn::before {
-            font-size: 18px;
-        }
-        
-        .btn-refresh::before {
-            content: "🔄";
-        }
-        
-        .btn-download::before {
-            content: "⬇️";
+        .forbid-icon {
+            width: 16px;
+            height: 16px;
         }
         
         @media (max-width: 768px) {
@@ -303,17 +260,8 @@
                 padding: 25px;
             }
             
-            .menu-date {
+            .login-message {
                 font-size: 20px;
-            }
-            
-            .menu-actions {
-                flex-direction: column;
-            }
-            
-            .menu-btn {
-                width: 100%;
-                justify-content: center;
             }
         }
     </style>
@@ -321,15 +269,15 @@
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="#" class="logo-link">
-                <img src="student.jpg" alt="Student" class="logo-img">
+            <a href="home.html" class="logo-link">
+                <img src="logo-student.png" alt="Student" class="logo-img">
                 <div class="title-container">
                     <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
                 </div>
             </a>
             
-            <div class="user-badge">
-                example@gmail.com
+            <div class="user-badge" id="userBadge">
+                Войти в систему
             </div>
         </div>
     </header>
@@ -338,82 +286,101 @@
         <div class="sidebar">
             <ul class="menu">
                 <li class="menu-item">
-                    <img src="heard.jpg" alt="Popular" class="logo-img2">
-                    <a href="#" class="logo-link2">популярное</a>
-                </li>
-                <li class="menu-item active">
-                    <img src="home.jpg" alt="Menu" class="logo-img2">
-                    <a href="#" class="logo-link2">меню</a>
+                    <img src="popular.png" alt="Popular" class="logo-img2">
+                    <a href="home.html" class="logo-link2">популярное</a>
                 </li>
                 <li class="menu-item">
-                    <img src="basket.jpg" alt="Orders" class="logo-img2">
-                    <a href="#" class="logo-link2">заказы</a>
+                    <img src="menu.png" alt="Menu" class="logo-img2">
+                    <a href="menu.html" class="logo-link2">меню</a>
                 </li>
                 <li class="menu-item">
-                    <img src="messedg.jpg" alt="Request" class="logo-img2">
-                    <a href="#" class="logo-link2">отзывы</a>
+                    <img src="orders.png" alt="Orders" class="logo-img2">
+                    <a href="orders.html" class="logo-link2">заказы</a>
                 </li>
                 <li class="menu-item">
-                    <img src="money.jpg" alt="Balance" class="logo-img2">
-                    <a href="#" class="logo-link2">баланс</a>
+                    <img src="request.png" alt="Request" class="logo-img2">
+                    <a href="rates.html" class="logo-link2">отзывы</a>
                 </li>
                 <li class="menu-item">
-                    <img src="stop.jpg" alt="Forbid" class="logo-img2">
-                    <a href="#" class="logo-link2">противопоказания и рекомендации</a>
+                    <img src="balance.png" alt="Balance" class="logo-img2">
+                    <a href="balance.html" class="logo-link2">баланс</a>
+                </li>
+                <li class="menu-item">
+                    <img src="forbid.png" alt="Forbid" class="logo-img2">
+                    <a href="forbid.html" class="logo-link2">противопоказания и рекомендации</a>
                 </li>
             </ul>
         </div>
         
         <div class="main-content">
-            <div class="menu-content">
-                <h1 class="menu-date">МЕНЮ НА 28 ЯНВАРЯ</h1>
-                
-                <div class="menu-category">
-                    <h2 class="category-title">готовые завтраки</h2>
-                    <div class="dishes-list">
-                        <p>Загрузка меню...</p>
-                    </div>
-                </div>
-                
-                <div class="menu-category">
-                    <h2 class="category-title">готовые послезавтраки</h2>
-                    <div class="dishes-list">
-                        <p>Загрузка меню...</p>
-                    </div>
-                </div>
-                
-                <div class="menu-category">
-                    <h2 class="category-title">готовые обеды</h2>
-                    <div class="dishes-list">
-                        <p>Загрузка меню...</p>
-                    </div>
-                </div>
+            <div class="login-section">
+                <h1 class="login-message">ВОЙДИТЕ, ЧТОБЫ ПОЛЬЗОВАТЬСЯ САЙТОМ</h1>
+                <button class="login-btn" id="loginBtn">ВОЙТИ</button>
             </div>
+            
         </div>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const menuItems = document.querySelectorAll('.menu-item');
-            const refreshBtn = document.querySelector('.btn-refresh');
-            const downloadBtn = document.querySelector('.btn-download');
-            const dishesLists = document.querySelectorAll('.dishes-list p');
+            const loginBtn = document.getElementById('loginBtn');
+            const userBadge = document.getElementById('userBadge');
             
-            // Обработка кликов по пунктам меню
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
+            // Простая обработка кнопки входа
+            loginBtn.addEventListener('click', function() {
+                // Если кнопка в состоянии "Войти"
+                if (loginBtn.textContent === 'ВОЙТИ') {
+                    loginBtn.textContent = 'ВХОД...';
+                    loginBtn.classList.add('logging-in');
                     
-                    // Убираем активный класс у всех элементов
-                    menuItems.forEach(menu => menu.classList.remove('active'));
+                    // Имитация входа через 1.5 секунды
+                    setTimeout(() => {
+                        loginBtn.textContent = 'ВОЙТИ В СИСТЕМУ';
+                        loginBtn.classList.remove('logging-in');
+                        
+                        // Обновляем бейдж пользователя
+                        userBadge.textContent = 'example@gmail.com';
+                        userBadge.style.backgroundColor = '#00C853';
+                        
+                        // Обновляем сообщение
+                        const loginMessage = document.querySelector('.login-message');
+                        if (loginMessage) {
+                            loginMessage.textContent = 'Добро пожаловать в систему!';
+                            loginMessage.style.color = '#00E661';
+                        }
+                        
+                        // Через 3 секунды меняем текст кнопки на "Выйти"
+                        setTimeout(() => {
+                            loginBtn.textContent = 'ВЫЙТИ';
+                        }, 3000);
+                    }, 1500);
+                } 
+                // Если кнопка в состоянии "Выйти"
+                else if (loginBtn.textContent === 'ВЫЙТИ') {
+                    loginBtn.textContent = 'ВОЙТИ';
+                    userBadge.textContent = 'Войти в систему';
+                    userBadge.style.backgroundColor = '#00E661';
                     
-                    // Добавляем активный класс к текущему элементу
-                    this.classList.add('active');
-                });
+                    // Восстанавливаем сообщение
+                    const loginMessage = document.querySelector('.login-message');
+                    if (loginMessage) {
+                        loginMessage.textContent = 'ВОЙДИТЕ, ЧТОБЫ ПОЛЬЗОВАТЬСЯ САЙТОМ';
+                        loginMessage.style.color = '#2C3E50';
+                    }
+                }
             });
             
-            // Устанавливаем пункт "меню" активным по умолчанию
-            menuItems[1].classList.add('active');
+            
+            // Обработка клика по бейджу пользователя
+            userBadge.addEventListener('click', function() {
+                if (userBadge.textContent === 'Войти в систему') {
+                    // Если пользователь не вошел, имитируем вход
+                    loginBtn.click();
+                    window.location.href = 'autorize.html';
+                } else {
+                    alert(`Текущий пользователь: ${userBadge.textContent}`);
+                }
+            });
         });
     </script>
 </body>
