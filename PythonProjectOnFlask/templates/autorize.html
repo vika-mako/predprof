@@ -9,222 +9,248 @@
     <link rel="icon" href="logo-student.png" type="image/x-icon" sizes="x20">
     <style>
         * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
 
-body {
-    background-color: white;
-    color: #333;
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        body {
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-/* Шапка */
-.header {
-    text-align: center;
-    margin-bottom: 40px;
-}
+        /* Шапка */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-.logo h1 {
-    color: #2c3e50;
-    font-size: 32px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-}
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
 
-.logo h1::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background-color: #4CAF50;
-}
+        .logo h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #4CAF50;
+        }
 
-/* Основное содержимое */
-.main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-}
+        /* Основное содержимое */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
 
-.login-container {
-    background-color: lightgreen;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    width: 100%;
-    max-width: 450px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+        .login-container {
+            background-color: lightgreen;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
-.login-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
+        .login-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
 
-.login-title {
-    text-align: center;
-    color: #2c3e50;
-    font-size: 28px;
-    margin-bottom: 30px;
-    font-weight: 600;
-}
+        .login-title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
 
-/* Форма входа */
-.login-form {
-    margin-bottom: 25px;
-}
+        /* Форма входа */
+        .login-form {
+            margin-bottom: 25px;
+        }
 
-.form-group {
-    margin-bottom: 25px;
-}
+        .form-group {
+            margin-bottom: 25px;
+        }
 
-.form-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #2c3e50;
-    font-size: 16px;
-}
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 16px;
+        }
 
-.form-input {
-    width: 100%;
-    padding: 15px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: all 0.3s;
-}
+        .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
 
-.form-input:focus {
-    border-color: #4CAF50;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-}
+        .form-input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
 
-.form-input::placeholder {
-    color: #aaa;
-}
+        .form-input::placeholder {
+            color: #aaa;
+        }
 
-/* Кнопка входа */
-.login-button {
-    width: 100%;
-    padding: 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
+        /* Кнопка входа */
+        .login-button {
+            width: 100%;
+            padding: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-.login-button:hover {
-    background-color: #3d8b40;
-    transform: translateY(-2px);
-}
+        .login-button:hover {
+            background-color: #3d8b40;
+            transform: translateY(-2px);
+        }
 
-.login-button:active {
-    transform: translateY(0);
-}
+        .login-button:active {
+            transform: translateY(0);
+        }
 
-/* Ссылка на регистрацию */
-.register-link {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
+        .login-button.loading {
+            background-color: #2E7D32;
+            cursor: not-allowed;
+        }
 
-.register-link p {
-    color: #666;
-    font-size: 16px;
-}
+        /* Сообщение об ошибке */
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
 
-.register-button {
-    color: #4CAF50;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
+        .error-message.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
 
-.register-button:hover {
-    color: #3d8b40;
-    text-decoration: underline;
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* Подвал */
-.footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-    color: #777;
-    font-size: 14px;
-}
+        /* Ссылка на регистрацию */
+        .register-link {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-    
-    .login-container {
-        padding: 30px 25px;
-    }
-    
-    .logo h1 {
-        font-size: 26px;
-    }
-    
-    .login-title {
-        font-size: 24px;
-    }
-}
+        .register-link p {
+            color: #666;
+            font-size: 16px;
+        }
 
-@media (max-width: 480px) {
-    .login-container {
-        padding: 25px 20px;
-    }
-    
-    .logo h1 {
-        font-size: 22px;
-    }
-    
-    .login-title {
-        font-size: 22px;
-    }
-    
-    .form-input {
-        padding: 12px;
-    }
-    
-    .login-button {
-        padding: 14px;
-        font-size: 16px;
-    }
-}
+        .register-button {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .register-button:hover {
+            color: #3d8b40;
+            text-decoration: underline;
+        }
+
+        /* Подвал */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .login-container {
+                padding: 30px 25px;
+            }
+            
+            .logo h1 {
+                font-size: 26px;
+            }
+            
+            .login-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 25px 20px;
+            }
+            
+            .logo h1 {
+                font-size: 22px;
+            }
+            
+            .login-title {
+                font-size: 22px;
+            }
+            
+            .form-input {
+                padding: 12px;
+            }
+            
+            .login-button {
+                padding: 14px;
+                font-size: 16px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -239,6 +265,11 @@ body {
             <div class="login-container">
                 <h2 class="login-title">Вход в систему</h2>
                 
+                <!-- Сообщение об ошибке -->
+                <div class="error-message" id="errorMessage">
+                    Неверный email или пароль!
+                </div>
+                
                 <form class="login-form" id="loginForm">
                     <div class="form-group">
                         <label for="email" class="form-label">Почта</label>
@@ -250,7 +281,7 @@ body {
                         <input type="password" id="password" class="form-input" placeholder="Введите пароль" required>
                     </div>
                     
-                    <button type="submit" class="login-button">ВОЙТИ</button>
+                    <button type="submit" class="login-button" id="loginButton">ВОЙТИ</button>
                 </form>
                 
                 <div class="register-link">
@@ -260,58 +291,156 @@ body {
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginButton = document.getElementById('loginButton');
+            const errorMessage = document.getElementById('errorMessage');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            
+            // Проверка наличия зарегистрированных пользователей в localStorage
+            function getRegisteredUsers() {
+                const users = localStorage.getItem('registeredUsers');
+                return users ? JSON.parse(users) : [];
+            }
+            
+            // Проверка введенных данных
+            function validateLogin(email, password) {
+                const users = getRegisteredUsers();
+                
+                // Ищем пользователя по email
+                const user = users.find(user => user.email === email);
+                
+                if (!user) {
+                    return { success: false, message: 'Пользователь с таким email не найден' };
+                }
+                
+                if (user.password !== password) {
+                    return { success: false, message: 'Неверный пароль' };
+                }
+                
+                return { success: true, user: user };
+            }
+            
+            // Валидация email
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // Показать ошибку
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.classList.add('show');
+                
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Обработка отправки формы
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const email = emailInput.value.trim();
+                const password = passwordInput.value;
+                
+                // Сброс предыдущих ошибок
+                errorMessage.classList.remove('show');
+                
+                // Проверка заполнения полей
+                if (!email || !password) {
+                    showError('Пожалуйста, заполните все поля');
+                    return;
+                }
+                
+                // Проверка формата email
+                if (!validateEmail(email)) {
+                    showError('Пожалуйста, введите корректный адрес электронной почты');
+                    return;
+                }
+                
+                // Показываем загрузку
+                loginButton.textContent = 'ВХОД...';
+                loginButton.classList.add('loading');
+                loginButton.disabled = true;
+                
+                // Имитация задержки для UX
+                setTimeout(() => {
+                    // Проверяем данные
+                    const validationResult = validateLogin(email, password);
+                    
+                    if (validationResult.success) {
+                        // Успешный вход
+                        console.log('Успешный вход:', validationResult.user);
+                        
+                        // Сохраняем информацию о текущем пользователе
+                        localStorage.setItem('currentUser', JSON.stringify(validationResult.user));
+                        localStorage.setItem('isLoggedIn', 'true');
+                        
+                        // Меняем текст кнопки
+                        loginButton.textContent = 'УСПЕШНО!';
+                        loginButton.style.backgroundColor = '#2E7D32';
+                        
+                        // Переход на home.html через 1.5 секунды
+                        setTimeout(() => {
+                            window.location.href = 'home.html';
+                        }, 1500);
+                        
+                    } else {
+                        // Ошибка входа
+                        showError(validationResult.message);
+                        
+                        // Восстанавливаем кнопку
+                        resetLoginButton();
+                    }
+                }, 1500); // Имитация задержки сервера
+            });
+            
+            // Сброс состояния кнопки
+            function resetLoginButton() {
+                loginButton.textContent = 'ВОЙТИ';
+                loginButton.classList.remove('loading');
+                loginButton.disabled = false;
+                loginButton.style.backgroundColor = '#4CAF50';
+            }
+            
+            // Автозаполнение для демонстрации (удалить в продакшене)
+            function setupDemoCredentials() {
+                const users = getRegisteredUsers();
+                
+                // Если нет пользователей, создаем тестового
+                if (users.length === 0) {
+                    const demoUsers = [
+                        { email: 'test@example.com', password: '123456', name: 'Тестовый Пользователь' },
+                        { email: 'user@stolovaya.ru', password: 'password', name: 'Иван Иванов' }
+                    ];
+                    
+                    localStorage.setItem('registeredUsers', JSON.stringify(demoUsers));
+                    
+                    // Заполняем поля для удобства тестирования
+                    emailInput.value = 'test@example.com';
+                    passwordInput.value = '123456';
+                    
+                    console.log('Демо-аккаунты созданы:');
+                    console.log('1. test@example.com / 123456');
+                    console.log('2. user@stolovaya.ru / password');
+                }
+            }
+            
+            // Инициализация демо-данных
+            setupDemoCredentials();
+            
+            // Очистка ошибки при вводе
+            emailInput.addEventListener('input', function() {
+                errorMessage.classList.remove('show');
+            });
+            
+            passwordInput.addEventListener('input', function() {
+                errorMessage.classList.remove('show');
+            });
+        });
+    </script>
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-    
-    loginForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        
-        // Простая валидация
-        if (!email || !password) {
-            alert('Пожалуйста, заполните все поля');
-            return;
-        }
-        
-        if (!validateEmail(email)) {
-            alert('Пожалуйста, введите корректный адрес электронной почты');
-            return;
-        }
-        
-        // В реальном приложении здесь будет отправка данных на сервер
-        console.log('Данные для входа:');
-        console.log('Почта:', email);
-        console.log('Пароль:', password);
-        
-        // Имитация успешного входа
-        showSuccessMessage();
-    });
-    
-    // Валидация email
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
-    
-    // Показать сообщение об успешном входе
-    function showSuccessMessage() {
-        const loginButton = document.querySelector('.login-button');
-        const originalText = loginButton.textContent;
-        
-        loginButton.textContent = 'Вход выполнен!';
-        loginButton.style.backgroundColor = '#2E7D32';
-        
-        setTimeout(function() {
-            loginButton.textContent = originalText;
-            loginButton.style.backgroundColor = '#4CAF50';
-            loginForm.reset();
-        }, 2000);
-    }
-});
-</script>
 </html>
