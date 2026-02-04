@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registration</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="createacc.css">
     <style>
         * {
@@ -413,6 +413,7 @@ body {
         registerButton.textContent = 'Регистрация успешна!';
         registerButton.style.backgroundColor = '#2E7D32';
         registerButton.disabled = true;
+        window.location.href = 'home.html';
         
         setTimeout(function() {
             registerButton.textContent = originalText;
@@ -438,8 +439,7 @@ body {
     const loginButton = document.querySelector('.login-button');
     loginButton.addEventListener('click', function(event) {
         event.preventDefault();
-        alert('Переход на страницу входа. В реальном приложении здесь будет перенаправление.');
-        // window.location.href = 'login.html'; // в реальном приложении
+        window.location.href = 'home.html';
     });
 });
 </script>
