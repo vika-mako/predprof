@@ -287,7 +287,7 @@
             <ul class="menu">
                 <li class="menu-item">
                     <img src="popular.png" alt="Popular" class="logo-img2">
-                    <a href="popular.html" class="logo-link2">популярное</a>
+                    <a href="home.html" class="logo-link2">популярное</a>
                 </li>
                 <li class="menu-item">
                     <img src="menu.png" alt="Menu" class="logo-img2">
@@ -325,7 +325,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const loginBtn = document.getElementById('loginBtn');
             const userBadge = document.getElementById('userBadge');
+            
+            // Простая обработка кнопки входа
             loginBtn.addEventListener('click', function() {
+                // Если кнопка в состоянии "Войти"
                 if (loginBtn.textContent === 'ВОЙТИ') {
                     loginBtn.textContent = 'ВХОД...';
                     loginBtn.classList.add('logging-in');
@@ -382,4 +385,3 @@
     </script>
 </body>
 </html>
-
