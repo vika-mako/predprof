@@ -373,6 +373,7 @@
                 if (userBadge.textContent === 'Войти в систему') {
                     // Если пользователь не вошел, имитируем вход
                     loginBtn.click();
+                    window.location.href = 'autorize.html';
                 } else {
                     alert(`Текущий пользователь: ${userBadge.textContent}`);
                 }
@@ -381,3 +382,4 @@
     </script>
 </body>
 </html>
+
