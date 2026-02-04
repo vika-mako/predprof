@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умная Столовая</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="payment.css">
+    <link rel="icon" href="logo-student.png" type="image/x-icon" sizes="x20">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            padding: 120px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 5px;
+        }
+        
+        .company-role {
+            font-size: 18px;
+            color: #00E661;
+            margin-bottom: 20px;
+        }
+        
+        .user-email {
+            display: inline-block;
+            background: #00E661;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+        }
+        .menu-item-now {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            border: 2px solid transparent;
+            border-color: #00E661;
+        }
+        .menu-item-now:hover {
+            border-color: #00E661;
+            border: 2px solid transparent;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .menu-item:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1)
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo-link2 {
+            text-decoration: none;
+            color: #555;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        
+        .title-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #5E5E5E;
+            line-height: 1;
+        }
+        
+        .company-name2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00E661;
+            line-height: 1;
+        }
+        
+        .user-badge {
+            width: fit-content;
+            min-width: 200px;
+            padding: 10px 20px;
+            background-color: #00E661;
+            border-radius: 20px;
+            color: white;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+        .logo-img2 {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 30px;
+        }
+        .menu-item-now {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            border: 2px solid transparent;
+            border-color: #00E661;
+        }
+        .menu-item-now:hover {
+            border-color: #00E661;
+            border: 2px solid transparent;
+            color: white;
+            transform: translateX(5px);
+        }
+        .submit-btn {
+            display: block;
+            width: 25%;
+            background: #00E661;
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px #5E5E5E;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px #5E5E5E;
+            text-decoration: none;
+        }
+        
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        .option {
+            background-color: #f9f9f9;
+            border: 1px solid white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px #5E5E5E;
+            text-align: center;
+        }
+        .form-title {
+            font-size: 30px;
+            color: #5E5E5E;
+            margin-bottom: 30px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .info-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8f0ff;
+        }
+        
+        .info-text {
+            color: #5E5E5E;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .highlight {
+            color: #00E661;
+            font-weight: 700;
+        }
+
+        .qr-container {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            border: 1px solid #e8f0ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+            border: 1px solid white;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 5px 15px #5E5E5E;
+            text-align: center;
+        }
+        
+        .qr-title {
+            font-size: 1.4rem;
+            color: #00E661;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px dashed #5E5E5E;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            
+        }
+        
+        .qr-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 30%, #5e5e5e38 2px, transparent 2px),
+                radial-gradient(circle at 70% 70%, #5e5e5e38 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+        
+        .qr-center {
+            width: 60px;
+            height: 60px;
+            background: #5E5E5E;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .qr-corner {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 8px solid #5E5E5E;
+            z-index: 1;
+        }
+        
+        .qr-corner.tl {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+            border-radius: 15px 0 0 0;
+        }
+        
+        .qr-corner.tr {
+            top: 20px;
+            right: 20px;
+            border-left: none;
+            border-bottom: none;
+            border-radius: 0 15px 0 0;
+        }
+        
+        .qr-corner.bl {
+            bottom: 20px;
+            left: 20px;
+            border-right: none;
+            border-top: none;
+            border-radius: 0 0 0 15px;
+        }
+        
+        .qr-hint {
+            color: #6c757d;
+            font-size: 1rem;
+            text-align: center;
+            max-width: 250px;
+        }
+        
+        .payment-form {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            border: 1px solid #e8f0ff;
+        }
+        
+        .form-title-2 {
+            font-size: 1.8rem;
+            color: #00E661;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .form-subtitle {
+            color: #6c757d;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .input-label {
+            font-size: 1.3rem;
+            color: #00E661;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .input-label i {
+            color: #5E5E5E;
+        }
+        
+        .amount-input {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .amount-input input {
+            width: 100%;
+            padding: 22px 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border: 3px solid #e8f0ff;
+            border-radius: 15px;
+            text-align: center;
+            color: #5E5E5E;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .amount-input input:focus {
+            outline: none;
+            border-color: #00E661;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(74, 111, 165, 0.1);
+        }
+        
+        .currency {
+            position: absolute;
+            right: 25px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #5E5E5E;
+        }
+        
+        .quick-amounts {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .quick-amount {
+            background: #f0f7ff;
+            border: 2px solid #e8f0ff;
+            border-radius: 12px;
+            padding: 18px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #5E5E5E;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quick-amount:hover {
+            background: #00E661;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .quick-amount.active {
+            background: #00E661;
+            color: white;
+            border-color: #00E661;
+            box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
+        }
+        .qr-scan-text {
+            font-size: 1.1rem;
+            color: #5E5E5E;
+        }
+        .qr-scan-hint {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .qr-scan-hint i {
+            font-size: 2rem;
+            color: #5e5e5e9a;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="home.html" class="logo-link">
+                <img src="logo-student.png" alt="Student" class="logo-img">
+                <div class="title-container">
+                    <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
+                </div>
+            </a>
+            
+            <div class="user-badge" id="userBadge">
+                example@gmail.com
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <img src="popular.png" alt="Popular" class="logo-img2">
+                    <a href="home.html" class="logo-link2">популярное</a>
+                </li>
+                <li class="menu-item">
+                    <img src="menu.png" alt="Menu" class="logo-img2">
+                    <a href="#" class="logo-link2">меню</a>
+                </li>
+                <li class="menu-item">
+                    <img src="orders.png" alt="Orders" class="logo-img2">
+                    <a href="orders.html" class="logo-link2">заказы</a>
+                </li>
+                <li class="menu-item">
+                    <img src="request.png" alt="Request" class="logo-img2">
+                    <a href="rates.html" class="logo-link2">отзывы</a>
+                </li>
+                <li class="menu-item-now">
+                    <img src="balance.png" alt="Balance" class="logo-img2">
+                    <a href="balance.html" class="logo-link2">баланс</a>
+                </li>
+                <li class="menu-item">
+                    <img src="forbid.png" alt="Forbid" class="logo-img2">
+                    <a href="#" class="logo-link2">противопоказания и рекоммендации</a>
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h2 class="form-title">баланс</h2>
+            <div class="option">
+                <div class="info-text">
+                    отсканируйте QR код <span class="highlight">СБП</span> и введите сумму пополнения
+                    <br>
+                    <span class="highlight">(не более 10000 ₽)</span>
+                    <br><br>
+                    комиссия банками не взимается
+                </div>
+                    
+                <div class="qr-scan-hint">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div class="qr-scan-text">
+                        откройте приложение вашего банка, 
+                        выберите "Оплата по QR-коду" и наведите камеру на код
+                    </div>
+                </div>
+            </div>
+            <div class="qr-container">
+                <div class="qr-title">QR-код для оплаты</div>
+                    
+                <div class="qr-code">
+                    <div class="qr-pattern"></div>
+                    <div class="qr-corner tl"></div>
+                    <div class="qr-corner tr"></div>
+                    <div class="qr-corner bl"></div>
+                    <div class="qr-center"></div>
+                </div>
+                    
+                <div class="qr-hint">
+                    наведите камеру смартфона для оплаты через приложение вашего банка
+                </div>
+            </div>
+            <div class="option">
+                <div>
+                    <div class="form-title-2">сумма пополнения</div>
+                    <div class="form-subtitle">введите сумму или выберите из предложенных</div>
+                </div>
+                    
+                <div class="input-group">
+                    <label class="input-label">
+                        <i class="fas fa-ruble-sign"></i> сумма пополнения
+                    </label>
+                        
+                    <div class="amount-input">
+                        <input type="number" id="amountInput" min="10" max="10000" placeholder="0" value="500">
+                        <div class="currency">₽</div>
+                    </div>
+                    <div class="validation-error" id="validationError">
+                        сумма должна быть от 10 до 10 000 ₽
+                    </div>
+                    <div class="quick-amounts">
+                        <div class="quick-amount" data-amount="100">100 ₽</div>
+                        <div class="quick-amount" data-amount="500">500 ₽</div>
+                        <div class="quick-amount" data-amount="1000">1000 ₽</div>
+                        <div class="quick-amount" data-amount="2000">2000 ₽</div>
+                        <div class="quick-amount" data-amount="5000">5000 ₽</div>
+                        <div class="quick-amount active" data-amount="10000">10000 ₽</div>
+                    </div>
+                </div>
+            </div>
+            <a href="balance.html" class="submit-btn" id="submitButton">пополнить</a>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.quick-amount').forEach(amount => {
+                amount.addEventListener('click', function() {
+                    document.querySelectorAll('.quick-amount').forEach(el => {
+                        el.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    selectedAmount = parseInt(this.getAttribute('data-amount'));
+                    amountInput.value = selectedAmount;
+                    validationError.classList.remove('show');
+                });
+            });
+    </script>
+</body>
+</html>
