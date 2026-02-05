@@ -13,15 +13,118 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, sans-serif;
         }
         
         body {
-            background-color: #F5F7FA;
-            min-height: 100vh;
-            padding-top: 100px;
+            background-color: #f5f5f5;
+            padding: 120px;
+            color: #333;
         }
         
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .user-info {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 5px;
+        }
+        
+        .company-role {
+            font-size: 18px;
+            color: #00E661;
+            margin-bottom: 20px;
+        }
+        
+        .user-email {
+            display: inline-block;
+            background: #00E661;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        .menu {
+            list-style: none;
+        }
+        
+        .menu-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+        }
+        .menu-item-now {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            border: 2px solid transparent;
+            border-color: #00E661;
+        }
+        .menu-item-now:hover {
+            border-color: #00E661;
+            border: 2px solid transparent;
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .menu-item:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1)
+        }
+        
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #5E5E5E;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+        }
         .header {
             position: fixed;
             top: 0;
@@ -31,10 +134,10 @@
             background-color: white;
             display: flex;
             align-items: center;
-            padding: 0 40px;
+            justify-content: space-between;
+            padding: 0 20px;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            border-bottom: 3px solid #00E661;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .header-container {
@@ -53,27 +156,42 @@
             text-decoration: none;
             color: inherit;
         }
+        .logo-link2 {
+            text-decoration: none;
+            color: #555;
+        }
         
         .logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
+            width: 40px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        
+        .title-container {
+            display: flex;
+            flex-direction: column;
         }
         
         .company-name {
             font-size: 32px;
             font-weight: 700;
-            color: #2C3E50;
+            color: #5E5E5E;
+            line-height: 1;
+        }
+        
+        .company-name2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00E661;
             line-height: 1;
         }
         
         .user-badge {
             width: fit-content;
             min-width: 200px;
-            padding: 12px 24px;
+            padding: 10px 20px;
             background-color: #00E661;
-            border-radius: 25px;
+            border-radius: 20px;
             color: white;
             font-weight: 500;
             text-align: center;
@@ -81,80 +199,12 @@
             align-items: center;
             justify-content: center;
             white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s;
         }
-        
-        .user-badge:hover {
-            background-color: #00C853;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 230, 97, 0.2);
-        }
-        
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px 40px;
-            gap: 30px;
-        }
-        
-        .sidebar {
-            width: 250px;
-            flex-shrink: 0;
-        }
-        
-        .menu {
-            list-style: none;
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .menu-item {
-            padding: 12px 15px;
-            margin-bottom: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 16px;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 2px solid transparent;
-        }
-        
-        .menu-item:hover {
-            background-color: #F0F7FF;
-            color: #00E661;
-            transform: translateX(5px);
-        }
-        
-        .menu-item.active {
-            background-color: rgba(0, 230, 97, 0.1);
-            color: #00E661;
-            border-color: #00E661;
-            font-weight: 500;
-        }
-        
         .logo-img2 {
             width: 20px;
             height: 20px;
-            transition: transform 0.3s;
+            vertical-align: middle;
         }
-        
-        .menu-item:hover .logo-img2 {
-            transform: scale(1.1);
-        }
-        
-        .logo-link2 {
-            text-decoration: none;
-            color: inherit;
-            font-weight: 500;
-        }
-        
         .main-content {
             flex: 1;
             background: white;
@@ -162,6 +212,23 @@
             padding: 40px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             min-height: 500px;
+        }
+        .menu-item-now {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+            color: #555;
+            border: 2px solid transparent;
+            border-color: #00E661;
+        }
+        .menu-item-now:hover {
+            border-color: #00E661;
+            border: 2px solid transparent;
+            color: white;
+            transform: translateX(5px);
         }
         
         /* Стили для корзины */
@@ -360,57 +427,13 @@
             font-size: 18px;
             margin-bottom: 20px;
         }
-        
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                padding: 0 20px 20px;
-            }
-            
-            .sidebar {
-                width: 100%;
-            }
-            
-            .menu {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-                justify-content: center;
-            }
-            
-            .menu-item {
-                flex: 1;
-                min-width: 140px;
-                justify-content: center;
-                margin-bottom: 0;
-            }
-            
-            .main-content {
-                padding: 25px;
-            }
-            
-            .cart-title {
-                font-size: 20px;
-            }
-            
-            .cart-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .item-actions {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="header-container">
-            <a href="#" class="logo-link">
-                <img src="student.jpg" alt="Student" class="logo-img">
+            <a href="home.html" class="logo-link">
+                <img src="logo-student.png" alt="Student" class="logo-img">
                 <div class="title-container">
                     <span class="company-name">УМНАЯ СТОЛОВАЯ</span>
                 </div>
@@ -426,28 +449,28 @@
         <div class="sidebar">
             <ul class="menu">
                 <li class="menu-item">
-                    <img src="heard.jpg" alt="Popular" class="logo-img2">
-                    <a href="#" class="logo-link2">популярное</a>
+                    <img src="popular.png" alt="Popular" class="logo-img2">
+                    <a href="home.html" class="logo-link2">популярное</a>
                 </li>
                 <li class="menu-item">
-                    <img src="home.jpg" alt="Menu" class="logo-img2">
-                    <a href="#" class="logo-link2">меню</a>
+                    <img src="menu.png" alt="Menu" class="logo-img2">
+                    <a href="menu.html" class="logo-link2">меню</a>
                 </li>
-                <li class="menu-item active">
-                    <img src="basket.jpg" alt="Orders" class="logo-img2">
-                    <a href="#" class="logo-link2">заказы</a>
-                </li>
-                <li class="menu-item">
-                    <img src="messedg.jpg" alt="Request" class="logo-img2">
-                    <a href="#" class="logo-link2">отзывы</a>
+                <li class="menu-item-now">
+                    <img src="orders.png" alt="Orders" class="logo-img2">
+                    <a href="orders.html" class="logo-link2">заказы</a>
                 </li>
                 <li class="menu-item">
-                    <img src="money.jpg" alt="Balance" class="logo-img2">
-                    <a href="#" class="logo-link2">баланс</a>
+                    <img src="request.png" alt="Request" class="logo-img2">
+                    <a href="rates.html" class="logo-link2">отзывы</a>
                 </li>
                 <li class="menu-item">
-                    <img src="stop.jpg" alt="Forbid" class="logo-img2">
-                    <a href="#" class="logo-link2">противопоказания и рекомендации</a>
+                    <img src="balance.png" alt="Balance" class="logo-img2">
+                    <a href="balance.html" class="logo-link2">баланс</a>
+                </li>
+                <li class="menu-item">
+                    <img src="forbid.png" alt="Forbid" class="logo-img2">
+                    <a href="forbid.html" class="logo-link2">противопоказания и рекоммендации</a>
                 </li>
             </ul>
         </div>
