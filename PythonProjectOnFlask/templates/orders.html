@@ -390,6 +390,8 @@
             margin-top: 25px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
+            text-decoration: none;
+            margin-top: 10px;
         }
         
         .checkout-btn:hover {
@@ -523,8 +525,7 @@
                         <span class="total-label">ИТОГ</span>
                         <span class="total-price" id="total">150 ₽</span>
                     </div>
-                    
-                    <button class="checkout-btn" onclick="placeOrder()">ЗАКАЗАТЬ</button>
+                    <a href="orders-2.html" class="checkout-btn" >ЗАКАЗАТЬ</a>
                 </div>
             </div>
         </div>
@@ -631,37 +632,6 @@
             
             // Скрываем итоговую сумму
             document.querySelector('.cart-summary').style.display = 'none';
-        }
-        
-        // Функция оформления заказа
-        function placeOrder() {
-            const checkoutBtn = document.querySelector('.checkout-btn');
-            const total = document.getElementById('total').textContent;
-            const originalText = checkoutBtn.textContent;
-            
-            checkoutBtn.textContent = 'ОФОРМЛЕНИЕ...';
-            checkoutBtn.disabled = true;
-            
-            // Имитация процесса оформления заказа
-            setTimeout(() => {
-                alert('Заказ успешно оформлен! Сумма: ' + total);
-                checkoutBtn.textContent = originalText;
-                checkoutBtn.disabled = false;
-                
-                // Очищаем корзину после оформления
-                const cartItems = document.querySelector('.cart-items');
-                cartItems.innerHTML = `
-                    <div class="empty-cart">
-                        <p>Ваш заказ оформлен!</p>
-                        <p>Сумма: ${total}</p>
-                        <button onclick="resetCart()" style="background: #00E661; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">
-                            Новый заказ
-                        </button>
-                    </div>
-                `;
-                
-                document.querySelector('.cart-summary').style.display = 'none';
-            }, 1500);
         }
         
         // Функция сброса корзины
