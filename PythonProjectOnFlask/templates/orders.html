@@ -535,26 +535,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             const menuItems = document.querySelectorAll('.menu-item');
             
-            // Обработка кликов по пунктам меню
-            menuItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Убираем активный класс у всех элементов
-                    menuItems.forEach(menu => menu.classList.remove('active'));
-                    
-                    // Добавляем активный класс к текущему элементу
-                    this.classList.add('active');
-                    
-                    // Обновляем заголовок в зависимости от выбранного пункта
-                    const sectionName = this.querySelector('.logo-link2').textContent;
-                    document.querySelector('.cart-title').textContent = sectionName.toUpperCase();
-                });
-            });
-            
-            // Устанавливаем пункт "заказы" активным по умолчанию
-            menuItems[2].classList.add('active');
-            
             // Инициализируем общую сумму
             updateTotal();
         });
